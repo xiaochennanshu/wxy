@@ -45,6 +45,11 @@
         width="120"
       />
       <el-table-column
+        prop="categoryId"
+        label="分类编号"
+        width="120"
+      />
+      <el-table-column
         prop="attendCount"
         label="参与人数"
         width="120"
@@ -124,6 +129,22 @@
       </el-form-item>
 
       <el-form-item
+        label="所属类型"
+        :label-width="formLabelWidth"
+      >
+       <t-pagination-select
+          @page-change="pageChange"
+          :optionSource="categories"
+          v-model="topic.categoryId"
+          labelKey="name"
+          valueKey="id"
+          style="width:100%;"
+          placeholder="请选择所属类型"
+          :paginationOption="selectPage"
+        />
+      </el-form-item>
+
+      <el-form-item
         label="奖品名称"
         :label-width="formLabelWidth"
       >
@@ -184,7 +205,11 @@ import {
   getTopicPage,
   getTopicOne,
 } from "../../http/topic";
+import {
+  getPage,
+} from "../../http/topicCategory";
 import { cloneDeep } from "lodash-es";
+import TPaginationSelect from "./module/TPaginationSelect.vue";
 export default defineComponent({
   data() {
     return {
@@ -194,6 +219,13 @@ export default defineComponent({
         current: 1,
         size: 10,
       },
+      selectPage: {
+        total: 0,
+        current: 1,
+        size: 6,
+        pagerCount: 5,
+      },
+      categories:[],
       searchId: null,
       dialogFormVisible: false,
       topic: {
@@ -205,8 +237,31 @@ export default defineComponent({
   },
   mounted() {
     this.getTopicsPage(1);
+    this.getCategoriesPage(1);
+  },
+  components: {
+    "t-pagination-select": TPaginationSelect,
   },
   methods: {
+    pageChange(current) {
+      this.getCategoriesPage(current);
+    },
+    getCategoriesPage(current) {
+      const data = {
+        current: current,
+        size: 6,
+      };
+      getPage(data)
+        .then((res) => {
+          console.log(res);
+          const page = res.data.page;
+          this.categories = page.records;
+          this.selectPage = page;
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
     search() {
       if (this.searchId == null || this.searchId == "") {
         alert("请输入话题编号后查询");

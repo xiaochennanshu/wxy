@@ -28,7 +28,7 @@
       <el-button
         type="success"
         @click="toAdd"
-      >添加</el-button>
+      >回复</el-button>
     </div>
     <el-table
       :data="comments"
