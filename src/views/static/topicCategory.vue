@@ -1,5 +1,8 @@
 <template>
   <div>
+    <div style="margin: 10px">
+        <router-link to="/index">首页</router-link>
+      </div>
     <div style="width: 60%;margin: 0 auto;">
       <el-form-item
         label="分类编号"

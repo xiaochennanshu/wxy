@@ -1,4 +1,7 @@
 <template>
+  <div style="margin: 10px">
+        <router-link to="/index">首页</router-link>
+      </div>
   <div>
     <div style="width: 60%;margin: 0 auto;">
       <el-form-item

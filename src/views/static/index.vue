@@ -2,14 +2,17 @@
   <div>
     <h1>话题管理模块</h1>
     <div style="margin: 10px">
-      <router-link to="/topicCategory">话题分类管理</router-link>
-    </div>
-    <div style="margin: 10px">
-      <router-link to="/topic">话题管理</router-link>
-    </div>
-    <div style="margin: 10px">
-      <router-link to="/topicComment">话题回复管理</router-link>
-    </div>
+      <div style="margin: 10px">
+        <router-link to="/login">登录</router-link>
+      </div>
+        <router-link to="/topicCategory">话题分类管理</router-link>
+      </div>
+      <div style="margin: 10px">
+        <router-link to="/topic">话题管理</router-link>
+      </div>
+      <div style="margin: 10px">
+        <router-link to="/topicComment">话题回复管理</router-link>
+      </div>
   </div>
 </template>
 <script>

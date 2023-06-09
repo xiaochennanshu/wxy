@@ -27,16 +27,17 @@ const routes = [
         component: () => import('../views/static/adCate.vue')// 懒加载
     },
 
-    {
-        path: '/cms-topic',
-        name: 'cms-topic',
-        component: () => import('@/views/admin/cms-topic.vue'), // 懒加载
-      },
       
     {
         path: '/login',
         name: 'login',
         component: () => import('../views/static/login.vue')// 懒加载
+    },
+
+    {
+        path: '/index',
+        name: 'index',
+        component: () => import('../views/static/index.vue')// 懒加载
     },
     {
         path: '/topicCategory',
